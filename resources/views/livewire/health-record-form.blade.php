@@ -14,7 +14,7 @@
                         {{-- Resident Selection --}}
                         <div class="mb-3">
                             <label class="form-label">Resident</label>
-                            <select wire:model="residentId" class="form-select">
+                            <select wire:model="record.resident_id" class="form-select">
                                 <option value="">Select Resident</option>
                                 @foreach($residents as $r)
                                     <option value="{{ $r->id }}">{{ $r->full_name }}</option>
@@ -31,41 +31,41 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Temperature (°C)</label>
-                                <input type="number" step="0.1" wire:model.defer="temperature" class="form-control" placeholder="Temperature">
+                                <input type="number" step="0.1" wire:model.defer="record.temperature" class="form-control" placeholder="Temperature">
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Blood Pressure</label>
-                                <input type="text" wire:model.defer="blood_pressure" class="form-control" placeholder="Blood Pressure">
+                                <input type="text" wire:model.defer="record.blood_pressure" class="form-control" placeholder="Blood Pressure">
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Weight (kg)</label>
-                                <input type="text" wire:model.defer="weight" class="form-control" placeholder="Weight">
+                                <input type="text" wire:model.defer="record.weight" class="form-control" placeholder="Weight">
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Height (cm)</label>
-                                <input type="text" wire:model.defer="height" class="form-control" placeholder="Height">
+                                <input type="text" wire:model.defer="record.height" class="form-control" placeholder="Height">
                             </div>
                         </div>
 
                         {{-- Symptoms / Diagnosis / Medications / Notes --}}
                         <div class="mb-3">
                             <label class="form-label">Symptoms</label>
-                            <textarea wire:model.defer="symptoms" class="form-control" rows="2" placeholder="Symptoms"></textarea>
+                            <textarea wire:model.defer="record.symptoms" class="form-control" rows="2" placeholder="Symptoms"></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Diagnosis</label>
-                            <textarea wire:model.defer="diagnosis" class="form-control" rows="2" placeholder="Diagnosis"></textarea>
+                            <textarea wire:model.defer="record.diagnosis" class="form-control" rows="2" placeholder="Diagnosis"></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Medications</label>
-                            <textarea wire:model.defer="medications" class="form-control" rows="2" placeholder="Medications"></textarea>
+                            <textarea wire:model.defer="record.medications" class="form-control" rows="2" placeholder="Medications"></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Notes</label>
-                            <textarea wire:model.defer="notes" class="form-control" rows="2" placeholder="Notes"></textarea>
+                            <textarea wire:model.defer="record.notes" class="form-control" rows="2" placeholder="Notes"></textarea>
                         </div>
 
                         {{-- Actions --}}

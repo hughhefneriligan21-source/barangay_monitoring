@@ -6,8 +6,8 @@
 
         @can('official')
         <a href="{{ route('admin.residents.create') }}"
-           class="btn btn-primary shadow-sm">
-           + Add Resident
+            class="btn btn-primary shadow-sm">
+            + Add Resident
         </a>
         @endcan
     </div>
@@ -23,7 +23,7 @@
                             <th class="text-center">Gender</th>
                             <th class="text-center">Age</th>
                             <th class="text-center">Blood Type</th>
-                            <th class="text-end">Actions</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,17 +33,31 @@
                             <td class="text-center">{{ ucfirst($resident->gender) }}</td>
                             <td class="text-center">{{ $resident->age }}</td>
                             <td class="text-center">{{ $resident->blood_type }}</td>
-                            <td class="text-end">
-                                <a href="{{ route('admin.residents.health-records', $resident->id) }}"
-                                   class="btn btn-sm btn-success me-1">
-                                   Records
-                                </a>
-                                @can('official')
-                                <a href="{{ route('admin.residents.edit', $resident->id) }}"
-                                   class="btn btn-sm btn-primary">
-                                   Edit
-                                </a>
-                                @endcan
+                            <td class="text-center">
+                                <div class="justify-content-center gap-1">
+
+                                    <a href="{{ route('admin.residents.health-records', $resident->id) }}"
+                                        class="btn btn-sm btn-outline-secondary me-1">
+                                        Records
+                                    </a>
+
+                                    @can('official')
+                                    <a href="{{ route('admin.residents.edit', $resident->id) }}"
+                                        class="btn btn-sm btn-outline-primary me-1">
+
+                                        Edit
+                                    </a>
+
+                                    <button type="button"
+                                        wire:click="deleteResident({{ $resident->id }})"
+                                        wire:confirm="Are you sure you want to delete this resident?"
+                                        class="btn btn-sm btn-outline-danger">
+                                        Delete
+                                    </button>
+                                    @endcan
+
+                                </div>
+
                             </td>
                         </tr>
                         @empty

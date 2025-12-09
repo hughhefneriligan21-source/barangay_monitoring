@@ -34,7 +34,7 @@ class HealthRecordList extends Component
     {
         if (auth()->user()->isOfficial()) {
             HealthRecord::find($id)->delete();
-            session()->flash('message', 'Health record deleted successfully.');
+            $this->dispatch('done', success: "bye bye");
         }
     }
 
@@ -50,9 +50,9 @@ class HealthRecordList extends Component
         }
 
         if ($this->search) {
-            $query->whereHas('resident', function($q) {
-                $q->where('first_name', 'like', '%'.$this->search.'%')
-                  ->orWhere('last_name', 'like', '%'.$this->search.'%');
+            $query->whereHas('resident', function ($q) {
+                $q->where('first_name', 'like', '%' . $this->search . '%')
+                    ->orWhere('last_name', 'like', '%' . $this->search . '%');
             });
         }
 

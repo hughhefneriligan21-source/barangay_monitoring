@@ -21,7 +21,7 @@ class ResidentList extends Component
     {
         if (auth()->user()->isOfficial()) {
             Resident::find($id)->delete();
-            session()->flash('message', 'Resident deleted successfully.');
+            $this->dispatch('done', success: "bye bye" );
         }
     }
 

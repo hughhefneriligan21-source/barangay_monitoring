@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h4 fw-bold mb-0">Health Records</h1>
         <a href="{{ route('admin.health-records.create') }}"
-           class="btn btn-primary shadow-sm">
+            class="btn btn-primary shadow-sm">
             Add Record
         </a>
     </div>
@@ -31,14 +31,23 @@
                             <td>{{ Str::limit($record->diagnosis, 40) }}</td>
                             <td>{{ $record->recordedBy->name }}</td>
                             <td class="text-center">
-                                <a href="{{ route('admin.health-records.edit', $record->id) }}"
-                                   class="btn btn-sm btn-outline-primary me-1">
-                                   Edit
-                                </a>
-                                <button wire:click="delete({{ $record->id }})"
+                                <div class="justify-content-center gap-1">
+
+                                    @can('official')
+
+                                    <a href="{{ route('admin.health-records.edit', $record->id) }}"
+                                        class="btn btn-sm btn-outline-primary me-1">
+                                        Edit
+                                    </a>
+                                    <button wire:click="deleteRecord({{ $record->id }})"
                                         class="btn btn-sm btn-outline-danger">
-                                    Delete
-                                </button>
+                                        Delete
+                                    </button>
+                                    @endcan
+
+                                </div>
+
+
                             </td>
                         </tr>
                         @empty

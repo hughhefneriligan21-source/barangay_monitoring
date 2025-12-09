@@ -5,9 +5,10 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Resident;
 
-class ResidentForm extends Component
+class ResidentFormEdit extends Component
 {
     public Resident $resident;
+
     public bool $isEdit = false;
 
     public function rules()
@@ -24,10 +25,10 @@ class ResidentForm extends Component
     }
 
 
-    public function mount()
+    public function mount($id)
     {
-        
-        $this->resident = new Resident();
+        $this->isEdit=true;
+        $this->resident = Resident::findOrFail($id);
     }
 
     public function save()
@@ -35,9 +36,9 @@ class ResidentForm extends Component
         $this->validate();
         try {
             
-            $this->resident->save();
+            $this->resident->update();
 
-            $this->dispatch('done', success: "Nice One");
+            $this->dispatch('done', success: "Nice One. Updated");
 
             return redirect()->route('admin.residents.index');
         } catch (\Throwable $th) {
